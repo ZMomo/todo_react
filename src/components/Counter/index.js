@@ -1,23 +1,19 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
+
+import useAlert from '../../hooks/useAlert';
+
 
 function Counter({initialCount}) {
-    // const [count, setCount] = useState(initialCount);
-    const countRef = useRef(initialCount);
-    const afficher = () => {
-      console.log(countRef);
-    }
+    const [count, setCount] = useState(initialCount);
+    
+    useAlert("Mon composant Counter est détruit", count);
 
     return (
       <>
-        {/* Total : {count} */}
-        Total : {countRef.current}
-        {/* <button onClick={() => setCount(initialCount)}>Réinitialiser</button>
+        Total : {count}
+        <button onClick={() => setCount(initialCount)}>Réinitialiser</button>
         <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-        <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button> */}
-        <button onClick={() => countRef.current = initialCount}>Réinitialiser</button>
-        <button onClick={() => countRef.current = countRef.current - 1}>-</button>
-        <button onClick={() => countRef.current = countRef.current + 1}>+</button>
-        <button onClick={() => afficher()}>afficher</button>
+        <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       </>
     );
   }

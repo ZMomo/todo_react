@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import useAlert from '../../hooks/useAlert';
 
 function Effect () {
   const [count, setCount] = useState(0);
 
-  // Équivalent à componentDidMount plus componentDidUpdate :
-  useEffect(() => {
-    // Mettre à jour le titre du document en utilisant l'API du navigateur
-    document.title = `Vous avez cliqué ${count} fois (effect)`;
-
-    return () => {
-        alert('Mon composant est détruit')
-    }
-  });
-
-  // Anciennement avec le systeme de classes:
-  //componentDidMount -> se declenche sur le premier rendu
-  //componentDidUpdate -> se declenche à chaque rendu 
-  //componentWillUnmount -> se declenche à chaque juste avant que le composant soit détruit 
+  useAlert("Mon composant Effect est détruit", count);
 
   return (
     <div>
