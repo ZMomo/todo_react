@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';   // on importe les hooks useRef et useState
+import { useEffect } from 'react/cjs/react.development';
 
 import Button from '../../components/Button';
 
@@ -7,12 +8,20 @@ import './index.css';
 const Todo = () => {    // On déclare le composant Todo
 
     // ici le hook useState
-    const [todos, setTodos] = useState([    // Ici on déclare le state initial
-        { id: 1, texte: "Todo 1" },    // <li>Todo 1 <button texte='supprimer' /></li>
-        { id: 2, texte: "Todo 2" },    // <li>Todo 2 <button texte='supprimer' /></li>      > affichage attendu
-        { id: 3, texte: "Todo 3" },    // <li>Todo 3 <button texte='supprimer' /></li>
-        { id: 4, texte: "Todo 4" }     // <li>Todo 4 <button texte='supprimer' /></li>
-    ]);
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8000/api/todos', {
+        // method: "GET",
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }})
+        .then(data => data.json())
+        .then(json => {
+            setTodos(json.success)
+        })
+    }, [])
 
     const textRef = useRef();   // Je crée une référence que je prévois de rattacher à l'élement input texte afin d'en récupérer la valeur
 
