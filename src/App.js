@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Focus from './components/Focus';
 import Counter from './components/Counter';
 import Effect from './components/Effect';
+import ConnexionBackend from './pages/ConnexionBackend';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ const App = () => {
           <Link to="/focus">Focus</Link>
           <Link to="/counter">counter</Link>
           <Link to="/effect">effect</Link>
+          <Link to="/backend">backend</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Todo/>} />
@@ -29,6 +31,7 @@ const App = () => {
           <Route path="/focus" element={<Focus/>} />
           <Route path="/counter" element={<Counter initialCount={0} />} />
           <Route path="/effect" element={<Effect />} />
+          <Route path="/backend" element={<ConnexionBackend />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
